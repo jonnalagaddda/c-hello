@@ -4,7 +4,7 @@ pipeline {
     }
   
     stages {
-       stage('Checkout MDR_UI') {
+       stage('Checkout test') {
             steps {
               checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[]]])
            }
