@@ -1,0 +1,21 @@
+pipeline {
+    agent {
+        label 'master'
+    }
+  
+    stages {
+       stage('Checkout MDR_UI') {
+            steps {
+              checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[]]])
+           }
+       } 
+
+    post {
+        success {
+            mail to: 'nagendra.j@sequretek.com,
+                subject: "Deployed test successfully 
+                  body: "Deployed MDR-UI successfully on ${branch}\nCommit_id\${commitMessage}\ :${GIT_COMMIT}\n\n\nThanks and Regards\nDevOps Team\n\n\n"
+        }
+        
+    }
+}
